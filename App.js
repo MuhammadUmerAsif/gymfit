@@ -136,6 +136,8 @@ function AppContent() {
     return null;
   };
 
+  const upcomingCount = state.bookings.filter((b) => b.status === "upcoming").length;
+
   return (
     <View style={styles.stage}>
       <StatusBar style="light" />
@@ -183,6 +185,7 @@ function AppContent() {
               {tabs.map((t) => {
                 const Icon = t.icon;
                 const active = activeKey === t.key;
+                const hasBadge = t.key === "classes" && upcomingCount > 0;
                 return (
                   <TouchableOpacity
                     key={t.key}
@@ -191,11 +194,18 @@ function AppContent() {
                     style={styles.navItemTouchable}
                   >
                     <View style={[styles.navBubble, active ? styles.navBubbleActive : styles.navBubbleInactive]}>
-                      <Icon
-                        size={20}
-                        color={active ? "#8B5CF6" : "#A39EBA"}
-                        strokeWidth={active ? 2.4 : 2.0}
-                      />
+                      <View style={{ position: "relative" }}>
+                        <Icon
+                          size={20}
+                          color={active ? "#8B5CF6" : "#A39EBA"}
+                          strokeWidth={active ? 2.4 : 2.0}
+                        />
+                        {hasBadge && (
+                          <View style={styles.tabBadge}>
+                            <Text style={styles.tabBadgeText}>{upcomingCount}</Text>
+                          </View>
+                        )}
+                      </View>
                       <Text style={[styles.navLabel, active ? styles.navLabelActive : styles.navLabelInactive]}>
                         {t.label}
                       </Text>
@@ -345,5 +355,22 @@ const styles = StyleSheet.create({
     height: 6,
     borderRadius: 3,
     backgroundColor: C.coral,
+  },
+  tabBadge: {
+    position: "absolute",
+    top: -4,
+    right: -8,
+    backgroundColor: C.coral,
+    borderRadius: 8,
+    minWidth: 15,
+    height: 15,
+    alignItems: "center",
+    justifyContent: "center",
+    paddingHorizontal: 3,
+  },
+  tabBadgeText: {
+    color: "#FFFFFF",
+    fontSize: 8.5,
+    fontFamily: "IBMPlexMono_600SemiBold",
   },
 });

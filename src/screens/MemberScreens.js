@@ -3,7 +3,7 @@ import { View, Text, TextInput, ScrollView, StyleSheet, TouchableOpacity, Image 
 import {
   CalendarDays, Dumbbell, QrCode, ChevronRight, ChevronLeft, Flame,
   RefreshCcw, Check, Plus, TrendingUp, Utensils, Sparkles, Snowflake,
-  ArrowUpRight, Bell, LayoutGrid, Footprints,
+  ArrowUpRight, Bell, LayoutGrid, Footprints, Droplets,
 } from "lucide-react-native";
 import { C, FONT } from "../theme";
 import RepRing from "../components/RepRing";
@@ -161,8 +161,27 @@ export function HomeScreen({ state, dispatch, navigate, openDetail }) {
         ))}
       </View>
 
-
-      {/* Membership Management Button / Collapsible Panel */}
+      {/* Daily Summary Metrics */}
+      <View style={{ marginTop: 4 }}>
+        <Text style={s.sectionHeader}>Daily Summary</Text>
+        <Row style={{ gap: 8, marginTop: 6 }}>
+          <Card style={{ flex: 1, paddingVertical: 10, paddingHorizontal: 10, alignItems: "center" }}>
+            <Droplets size={16} color="#3B82F6" />
+            <Text style={{ fontFamily: FONT.headingBold, fontSize: 13, color: C.text, marginTop: 4 }}>1.8 L</Text>
+            <Text style={{ fontFamily: FONT.body, fontSize: 9, color: C.muted, marginTop: 1 }}>Water</Text>
+          </Card>
+          <Card style={{ flex: 1, paddingVertical: 10, paddingHorizontal: 10, alignItems: "center" }}>
+            <Flame size={16} color={C.coral} />
+            <Text style={{ fontFamily: FONT.headingBold, fontSize: 13, color: C.text, marginTop: 4 }}>5 Days</Text>
+            <Text style={{ fontFamily: FONT.body, fontSize: 9, color: C.muted, marginTop: 1 }}>Streak</Text>
+          </Card>
+          <Card style={{ flex: 1, paddingVertical: 10, paddingHorizontal: 10, alignItems: "center" }}>
+            <Footprints size={16} color={C.lime} />
+            <Text style={{ fontFamily: FONT.headingBold, fontSize: 13, color: C.text, marginTop: 4 }}>8,420</Text>
+            <Text style={{ fontFamily: FONT.body, fontSize: 9, color: C.muted, marginTop: 1 }}>Steps</Text>
+          </Card>
+        </Row>
+      </View>
       <View style={{ marginTop: 4, marginBottom: 12 }}>
         <TouchableOpacity
           activeOpacity={0.8}
