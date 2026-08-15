@@ -48,56 +48,6 @@ const TRAINER_TABS = [
   { key: "trainerProfile", label: "Profile", icon: User, title: "Profile" },
 ];
 
-const generateWavyPath = (width, height, count) => {
-  if (!width || !height || !count) return "";
-  
-  const W = width / count;
-  const H = height;
-  const cy = H / 2;
-  
-  // Outer circle radius around each tab center
-  const R_outer = Math.min(W * 0.44, H * 0.44); // ensure it leaves padding top/bottom and fits horizontally
-  // Inward curve depth at midpoint
-  const r_in = R_outer * 0.58; // smaller means narrower waist
-  
-  // Control point horizontal offset
-  const dx = W * 0.22;
-  
-  const cx_0 = 0.5 * W;
-  
-  // Start at bottom of the first tab circle
-  let path = `M ${cx_0} ${cy + R_outer}`;
-  
-  // Left semicircle
-  path += ` A ${R_outer} ${R_outer} 0 0 1 ${cx_0} ${cy - R_outer}`;
-  
-  // Top edges (left to right)
-  for (let i = 0; i < count - 1; i++) {
-    const cx_i = (i + 0.5) * W;
-    const cx_next = (i + 1.5) * W;
-    const mx = (cx_i + cx_next) / 2;
-    
-    path += ` C ${cx_i + dx} ${cy - R_outer}, ${mx - dx} ${cy - r_in}, ${mx} ${cy - r_in}`;
-    path += ` C ${mx + dx} ${cy - r_in}, ${cx_next - dx} ${cy - R_outer}, ${cx_next} ${cy - R_outer}`;
-  }
-  
-  // Right semicircle
-  const cx_last = (count - 0.5) * W;
-  path += ` A ${R_outer} ${R_outer} 0 0 1 ${cx_last} ${cy + R_outer}`;
-  
-  // Bottom edges (right to left)
-  for (let i = count - 2; i >= 0; i--) {
-    const cx_next = (i + 1.5) * W;
-    const cx_i = (i + 0.5) * W;
-    const mx = (cx_i + cx_next) / 2;
-    
-    path += ` C ${cx_next - dx} ${cy + R_outer}, ${mx + dx} ${cy + r_in}, ${mx} ${cy + r_in}`;
-    path += ` C ${mx - dx} ${cy + r_in}, ${cx_i + dx} ${cy + R_outer}, ${cx_i} ${cy + R_outer}`;
-  }
-  
-  path += " Z";
-  return path;
-};
 
 export default function App() {
   return (
@@ -126,7 +76,6 @@ function AppContent() {
   const [role, setRole] = useState("member");
   const [memberTab, setMemberTab] = useState("home");
   const [trainerTab, setTrainerTab] = useState("dashboard");
-  const [navWidth, setNavWidth] = useState(0);
   const [detail, setDetail] = useState(null);
   const [state, dispatch] = useReducer(reducer, initialState);
 
@@ -229,39 +178,29 @@ function AppContent() {
 
           <Toast text={state.toast} />
 
-          <View style={[styles.bottomNavWrap, { paddingBottom: 16 + Math.max(insets.bottom, 20) }]}>
-            <View
-              style={styles.bottomNav}
-              onLayout={(e) => setNavWidth(e.nativeEvent.layout.width)}
-            >
-              {navWidth > 0 && (
-                <View style={styles.svgContainer}>
-                  <Svg width={navWidth} height={70} viewBox={`0 0 ${navWidth} 70`}>
-                    <Path
-                      d={generateWavyPath(navWidth, 70, tabs.length)}
-                      fill="#FFFFFF"
-                    />
-                  </Svg>
-                </View>
-              )}
+          <View style={[styles.bottomNavWrap, { paddingBottom: Math.max(insets.bottom, 12) }]}>
+            <View style={styles.bottomNav}>
               {tabs.map((t) => {
                 const Icon = t.icon;
                 const active = activeKey === t.key;
                 return (
-                  <View key={t.key} style={styles.navItemTouchable}>
-                    <TouchableOpacity
-                      activeOpacity={0.8}
-                      onPress={() => setActiveKey(t.key)}
-                      style={[styles.navBubble, active ? styles.navBubbleActive : styles.navBubbleInactive]}
-                    >
+                  <TouchableOpacity
+                    key={t.key}
+                    activeOpacity={0.7}
+                    onPress={() => setActiveKey(t.key)}
+                    style={styles.navItemTouchable}
+                  >
+                    <View style={[styles.navBubble, active ? styles.navBubbleActive : styles.navBubbleInactive]}>
                       <Icon
-                        size={active ? 22 : 18}
-                        color={active ? "#FFFFFF" : "#9AA0A6"}
-                        strokeWidth={active ? 2.4 : 1.8}
-                        fill={active && t.key !== "qr" && t.key !== "scan" ? "#FFFFFF" : "none"}
+                        size={20}
+                        color={active ? "#8B5CF6" : "#A39EBA"}
+                        strokeWidth={active ? 2.4 : 2.0}
                       />
-                    </TouchableOpacity>
-                  </View>
+                      <Text style={[styles.navLabel, active ? styles.navLabelActive : styles.navLabelInactive]}>
+                        {t.label}
+                      </Text>
+                    </View>
+                  </TouchableOpacity>
                 );
               })}
             </View>
@@ -332,57 +271,60 @@ const styles = StyleSheet.create({
     textTransform: "uppercase",
   },
   screen: { flex: 1 },
-  screenContent: { paddingHorizontal: 20, paddingBottom: 150 },
+  screenContent: { paddingHorizontal: 20, paddingBottom: 160 },
   bottomNavWrap: {
     position: "absolute",
     bottom: 0,
     left: 0,
     right: 0,
-    paddingHorizontal: 20,
-    paddingBottom: 16,
-    paddingTop: 10,
-    backgroundColor: "transparent",
+    backgroundColor: C.surface,
+    borderTopWidth: 1,
+    borderTopColor: C.line,
     zIndex: 100,
+    elevation: 12,
+    shadowColor: "#000000",
+    shadowOpacity: 0.35,
+    shadowRadius: 12,
+    shadowOffset: { width: 0, height: -4 },
   },
   bottomNav: {
     flexDirection: "row",
-    height: 70,
-    backgroundColor: "transparent",
-    overflow: "visible",
-    position: "relative",
-  },
-  svgContainer: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    zIndex: 1,
+    alignItems: "center",
+    justifyContent: "space-around",
+    paddingTop: 8,
+    paddingBottom: 4,
+    paddingHorizontal: 8,
   },
   navItemTouchable: {
     flex: 1,
-    height: "100%",
     alignItems: "center",
     justifyContent: "center",
-    zIndex: 2,
   },
   navBubble: {
     alignItems: "center",
     justifyContent: "center",
-    width: 48,
-    height: 48,
-    borderRadius: 24,
+    paddingVertical: 6,
+    paddingHorizontal: 12,
+    borderRadius: 16,
+    width: "100%",
   },
   navBubbleInactive: {
-    backgroundColor: "#ECEEF0",
+    backgroundColor: "transparent",
   },
   navBubbleActive: {
-    backgroundColor: "#B3A7FA",
-    shadowColor: "#B3A7FA",
-    shadowOpacity: 0.35,
-    shadowRadius: 6,
-    shadowOffset: { width: 0, height: 3 },
-    elevation: 4,
+    backgroundColor: "rgba(139, 92, 246, 0.16)",
+  },
+  navLabel: {
+    fontSize: 10.5,
+    fontFamily: "Inter_600SemiBold",
+    marginTop: 3,
+    letterSpacing: 0.2,
+  },
+  navLabelActive: {
+    color: "#8B5CF6",
+  },
+  navLabelInactive: {
+    color: "#A39EBA",
   },
   bellBtn: {
     width: 38,

@@ -161,15 +161,6 @@ export function HomeScreen({ state, dispatch, navigate, openDetail }) {
         ))}
       </View>
 
-      {/* Quick Actions Links */}
-      <View style={{ marginTop: 6 }}>
-        <Text style={s.sectionHeader}>Quick Actions</Text>
-        <Row style={{ gap: 8, marginTop: 4 }}>
-          <IconBtn style={{ flex: 1, backgroundColor: C.surface, borderWidth: 1, borderColor: C.line }} icon={<CalendarDays size={15} color={C.text} />} label="Classes" onPress={() => navigate("classes")} />
-          <IconBtn style={{ flex: 1, backgroundColor: C.surface, borderWidth: 1, borderColor: C.line }} icon={<Dumbbell size={15} color={C.text} />} label="Book" onPress={() => navigate("book")} />
-          <IconBtn style={{ flex: 1, backgroundColor: C.surface, borderWidth: 1, borderColor: C.line }} icon={<QrCode size={15} color={C.text} />} label="My QR" onPress={() => navigate("qr")} />
-        </Row>
-      </View>
 
       {/* Membership Management Button / Collapsible Panel */}
       <View style={{ marginTop: 4, marginBottom: 12 }}>
