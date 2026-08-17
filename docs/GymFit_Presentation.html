@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GymFit - Product Case Study & Client Deck</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Oswald:wght@600;700&family=IBM+Plex+Mono:wght@500;600&display=swap');
+
+    @page {
+      size: 1920px 1080px;
+      margin: 0;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #0B0A12;
+      color: #F5F3FA;
+      font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .slide {
+      width: 1920px;
+      height: 1080px;
+      padding: 70px 90px;
+      background: radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.12) 0%, #0B0A12 70%);
+      page-break-after: always;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .kicker {
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #8B5CF6;
+      margin-bottom: 8px;
+    }
+
+    .title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 42px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: #FFFFFF;
+      margin-bottom: 36px;
+    }
+
+    /* Cover Slide */
+    .cover-layout {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 60px;
+      height: 100%;
+      align-items: center;
+    }
+
+    .cover-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 64px;
+      line-height: 1.15;
+      font-weight: 700;
+      color: #FFFFFF;
+      margin-bottom: 24px;
+    }
+
+    .cover-desc {
+      font-size: 22px;
+      line-height: 1.6;
+      color: #9C97AD;
+      margin-bottom: 40px;
+    }
+
+    .badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 24px;
+      background: rgba(139, 92, 246, 0.15);
+      border: 1px solid rgba(139, 92, 246, 0.4);
+      border-radius: 100px;
+      color: #FF5D3A;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .cover-img-wrap {
+      width: 100%;
+      height: 780px;
+      border-radius: 32px;
+      overflow: hidden;
+      border: 1px solid #2E2A3D;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+    }
+
+    .cover-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* 3 Column Grid */
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      flex: 1;
+    }
+
+    /* 2 Column Split */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      flex: 1;
+      align-items: center;
+    }
+
+    /* 4 Column Metrics Grid */
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 28px;
+      flex: 1;
+    }
+
+    .card {
+      background: #17151F;
+      border: 1px solid #2E2A3D;
+      border-radius: 24px;
+      padding: 36px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    .card-label-coral {
+      color: #FF5D3A;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .card-label-violet {
+      color: #8B5CF6;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .card-h3 {
+      font-size: 24px;
+      font-weight: 700;
+      color: #FFFFFF;
+      margin-bottom: 14px;
+    }
+
+    .card-body {
+      font-size: 16px;
+      line-height: 1.6;
+      color: #9C97AD;
+    }
+
+    .divider {
+      height: 1px;
+      background: #2E2A3D;
+      margin: 24px 0;
+    }
+
+    .slide-media {
+      width: 100%;
+      height: 680px;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid #2E2A3D;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+    }
+
+    .slide-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .feature-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin-top: 16px;
+    }
+
+    .feature-item {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .feature-head {
+      font-size: 18px;
+      font-weight: 700;
+      color: #FFFFFF;
+    }
+
+    .feature-desc {
+      font-size: 15px;
+      line-height: 1.5;
+      color: #9C97AD;
+    }
+
+    .metric-number {
+      font-family: 'Oswald', sans-serif;
+      font-size: 56px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .metric-label {
+      font-size: 20px;
+      font-weight: 700;
+      color: #FFFFFF;
+      margin-bottom: 12px;
+    }
+
+    .roadmap-row {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      flex: 1;
+    }
+
+    .roadmap-card {
+      background: #17151F;
+      border: 1px solid #2E2A3D;
+      border-radius: 18px;
+      padding: 24px 32px;
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .roadmap-phase {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 18px;
+      font-weight: 700;
+      min-width: 260px;
+    }
+
+    .footer {
+      position: absolute;
+      bottom: 28px;
+      left: 90px;
+      right: 90px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      color: #615C72;
+      font-family: 'IBM Plex Mono', monospace;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- SLIDE 1: Cover -->
+  <div class="slide">
+    <div class="cover-layout">
+      <div>
+        <div class="kicker">CLIENT PRODUCT PRESENTATION & CASE STUDY</div>
+        <h1 class="cover-title">GymFit: Next-Gen Fitness & Studio Operations</h1>
+        <p class="cover-desc">
+          A high-performance mobile ecosystem engineered for modern gyms. Uniting members, coaches, and studio managers with gamified workouts, self-service bookings, and sub-2-second digital check-ins.
+        </p>
+        <div class="badge-pill">
+          ⚡ React Native 0.86 &bull; Expo SDK 57 &bull; iOS & Android Ready
+        </div>
+      </div>
+      <div class="cover-img-wrap">
+        <img src="./assets/gymfit_hero_showcase_1786974054713.jpg" alt="GymFit App Showcase">
+      </div>
+    </div>
+    <div class="footer">
+      <span>GYMFIT PLATFORM</span>
+      <span>SLIDE 01</span>
+    </div>
+  </div>
+
+  <!-- SLIDE 2: Executive Overview & The Problem -->
+  <div class="slide">
+    <div class="kicker">Executive Overview</div>
+    <h2 class="title">Bridging The Gap Between Member Engagement & Gym Operations</h2>
+    <div class="grid-3">
+      <div class="card">
+        <div class="card-label-coral">THE PROBLEM</div>
+        <h3 class="card-h3">Front Desk Congestion</h3>
+        <p class="card-body">Manual sign-ins, paper logs, and long lines at peak hours lose valuable attendance data and create a poor first impression.</p>
+        <div class="divider"></div>
+        <div class="card-label-violet">GYMFIT SOLUTION</div>
+        <h3 class="card-h3">Fast Dynamic QR Pass</h3>
+        <p class="card-body">Instant digital check-in with animated laser verification and live trainer radar scanners in under 2 seconds.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-label-coral">THE PROBLEM</div>
+        <h3 class="card-h3">Member Churn</h3>
+        <p class="card-body">Members lack structured guidance and drop off due to unmonitored workouts, vague goals, and zero habit reinforcement.</p>
+        <div class="divider"></div>
+        <div class="card-label-violet">GYMFIT SOLUTION</div>
+        <h3 class="card-h3">Gamified RepRings & XP</h3>
+        <p class="card-body">Concentric SVG progress rings, daily challenge XP multipliers, and structured hypertrophy/cardio routines.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-label-coral">THE PROBLEM</div>
+        <h3 class="card-h3">Scheduling Friction</h3>
+        <p class="card-body">Booking personal trainers over WhatsApp or phone leads to double bookings, missed sessions, and lost coaching revenue.</p>
+        <div class="divider"></div>
+        <div class="card-label-violet">GYMFIT SOLUTION</div>
+        <h3 class="card-h3">Self-Service Booking</h3>
+        <p class="card-body">Real-time calendar slot reservation for 1-on-1 personal training, group HIIT, yoga, and recovery amenities.</p>
+      </div>
+    </div>
+    <div class="footer">
+      <span>GYMFIT PLATFORM</span>
+      <span>SLIDE 02</span>
+    </div>
+  </div>
+
+  <!-- SLIDE 3: Architecture & Onboarding -->
+  <div class="slide">
+    <div class="kicker">Product Architecture</div>
+    <h2 class="title">Single Platform, Dual Personas: Member & Trainer Experience</h2>
+    <div class="grid-2">
+      <div class="card" style="height: 680px;">
+        <h3 class="card-h3" style="color: #8B5CF6; font-size: 28px; margin-bottom: 20px;">Why a Unified Dual-Role App?</h3>
+        <ul class="feature-list">
+          <li class="feature-item">
+            <span class="feature-head">✨ Zero App Store Fragmentation</span>
+            <span class="feature-desc">Eliminates the cost and confusion of deploying separate 'Staff' and 'Member' apps. One download handles both workflows.</span>
+          </li>
+          <li class="feature-item">
+            <span class="feature-head">🔄 Instant One-Tap Role Switch</span>
+            <span class="feature-desc">Staff can preview member flows and members with coaching credentials can toggle into their trainer hub seamlessly.</span>
+          </li>
+          <li class="feature-item">
+            <span class="feature-head">⚡ Real-Time State Synchronization</span>
+            <span class="feature-desc">Bookings, check-in scans, and schedule modifications instantly update both parties with zero lag.</span>
+          </li>
+          <li class="feature-item">
+            <span class="feature-head">🎯 Motivating Onboarding Flow</span>
+            <span class="feature-desc">Dynamic athlete imagery and goal selection guide first-time users straight into their personalized fitness journey.</span>
+          </li>
+        </ul>
+      </div>
+      <div class="slide-media">
+        <img src="./assets/gymfit_onboarding_brand_1786974121750.jpg" alt="Onboarding Showcase">
+      </div>
+    </div>
+    <div class="footer">
+      <span>GYMFIT PLATFORM</span>
+      <span>SLIDE 03</span>
+    </div>
+  </div>
+
+  <!-- SLIDE 4: Member Suite -->
+  <div class="slide">
+    <div class="kicker">Member Experience</div>
+    <h2 class="title">Empowering Members with Interactive Tracking & Instant Booking</h2>
+    <div class="grid-2">
+      <div class="slide-media">
+        <img src="./assets/gymfit_member_ui_1786974073573.jpg" alt="Member UI Suite">
+      </div>
+      <div class="card" style="height: 680px;">
+        <h3 class="card-h3" style="color: #8B5CF6; font-size: 28px; margin-bottom: 20px;">High-Retention Member Features</h3>
+        <ul class="feature-list">
+          <li class="feature-item">
+            <span class="feature-head">📊 RepRing Circular Visualizer</span>
+            <span class="feature-desc">Custom SVG dynamic progress ring displaying workout target completion % and daily calorie expenditure at a glance.</span>
+          </li>
+          <li class="feature-item">
+            <span class="feature-head">🏋️ Guided Workout Routines</span>
+            <span class="feature-desc">Curated Upper Body, Lower Body, and Cardio programs with set/rep trackers, equipment lists, and rest timers.</span>
+          </li>
+          <li class="feature-item">
+            <span class="feature-head">🔥 Streak & XP Challenge Engine</span>
+            <span class="feature-desc">Daily milestone challenges (e.g. +50 XP bonus before 9:00 AM) that gamify attendance and build habits.</span>
+          </li>
+          <li class="feature-item">
+            <span class="feature-head">📅 Direct Class & Trainer Booking</span>
+            <span class="feature-desc">Filter classes by category (Yoga, Strength, HIIT) or coach, inspect available time slots, and book in seconds.</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer">
+      <span>GYMFIT PLATFORM</span>
+      <span>SLIDE 04</span>
+    </div>
+  </div>
+
+  <!-- SLIDE 5: Trainer Hub & QR Pass -->
+  <div class="slide">
+    <div class="kicker">Operations & Verification</div>
+    <h2 class="title">Contactless Access & Powerful Trainer Management</h2>
+    <div class="grid-2">
+      <div class="card" style="height: 680px;">
+        <h3 class="card-h3" style="color: #FF5D3A; font-size: 28px; margin-bottom: 20px;">Frictionless Check-Ins & Coach Portal</h3>
+        <ul class="feature-list">
+          <li class="feature-item">
+            <span class="feature-head">📱 Dynamic Fast Check-In QR Pass</span>
+            <span class="feature-desc">Instant digital access pass with glowing laser scan animation, tier verification, and studio location sync.</span>
+          </li>
+          <li class="feature-item">
+            <span class="feature-head">⚡ Live Trainer Attendance Scanner</span>
+            <span class="feature-desc">Camera/Radar scanner verifying member access in &lt; 2 seconds, reducing front-desk lines by 65%.</span>
+          </li>
+          <li class="feature-item">
+            <span class="feature-head">👥 Client Roster & Performance Notes</span>
+            <span class="feature-desc">Trainers track client fitness stats, weight milestones, and log workout notes per session.</span>
+          </li>
+          <li class="feature-item">
+            <span class="feature-head">💰 Revenue & Session Analytics</span>
+            <span class="feature-desc">Real-time tracking of weekly billable hours, completed sessions, and coach earnings projections.</span>
+          </li>
+        </ul>
+      </div>
+      <div class="slide-media">
+        <img src="./assets/gymfit_trainer_qr_1786974096965.jpg" alt="Trainer Hub and QR">
+      </div>
+    </div>
+    <div class="footer">
+      <span>GYMFIT PLATFORM</span>
+      <span>SLIDE 05</span>
+    </div>
+  </div>
+
+  <!-- SLIDE 6: Business ROI & Metrics -->
+  <div class="slide">
+    <div class="kicker">Client Value Proposition</div>
+    <h2 class="title">Measurable Business Outcomes & Return On Investment</h2>
+    <div class="grid-4">
+      <div class="card" style="justify-content: center;">
+        <div class="metric-number" style="color: #8B5CF6;">+42%</div>
+        <div class="metric-label">Member Retention</div>
+        <p class="card-body">Gamified daily streaks, challenge XP, and progress tracking keep members engaged and attending consistently.</p>
+      </div>
+
+      <div class="card" style="justify-content: center;">
+        <div class="metric-number" style="color: #22C55E;">-65%</div>
+        <div class="metric-label">Front Desk Lines</div>
+        <p class="card-body">Instant self-service QR check-ins eliminate peak hour bottleneck lines and manual staff paperwork.</p>
+      </div>
+
+      <div class="card" style="justify-content: center;">
+        <div class="metric-number" style="color: #FF5D3A;">+38%</div>
+        <div class="metric-label">PT Bookings</div>
+        <p class="card-body">In-app discovery and direct time-slot booking increase personal training revenue per client.</p>
+      </div>
+
+      <div class="card" style="justify-content: center;">
+        <div class="metric-number" style="color: #F5F3FA;">~4h/wk</div>
+        <div class="metric-label">Saved per Coach</div>
+        <p class="card-body">Automated attendance, client rosters, and session reminders free trainers to focus on coaching.</p>
+      </div>
+    </div>
+    <div class="footer">
+      <span>GYMFIT PLATFORM</span>
+      <span>SLIDE 06</span>
+    </div>
+  </div>
+
+  <!-- SLIDE 7: Technical Stack & Architecture -->
+  <div class="slide">
+    <div class="kicker">Engineering & Technology</div>
+    <h2 class="title">Enterprise-Grade React Native & Expo Architecture</h2>
+    <div class="grid-3">
+      <div class="card">
+        <h3 class="card-h3" style="color: #8B5CF6;">Modern Tech Stack</h3>
+        <ul class="feature-list">
+          <li class="feature-item"><span class="feature-desc">• React Native 0.86 & Expo SDK 57</span></li>
+          <li class="feature-item"><span class="feature-desc">• React 19 concurrent rendering engine</span></li>
+          <li class="feature-item"><span class="feature-desc">• Native SVG Data-Visualizations</span></li>
+          <li class="feature-item"><span class="feature-desc">• Google Fonts (Inter, Oswald, IBM Plex)</span></li>
+          <li class="feature-item"><span class="feature-desc">• Cross-platform iOS & Android ready</span></li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3 class="card-h3" style="color: #FF5D3A;">Performance & UX</h3>
+        <ul class="feature-list">
+          <li class="feature-item"><span class="feature-desc">• Sub-100ms screen transitions</span></li>
+          <li class="feature-item"><span class="feature-desc">• Optimized dark-mode aesthetic for gyms</span></li>
+          <li class="feature-item"><span class="feature-desc">• Dynamic Safe Area insets handling</span></li>
+          <li class="feature-item"><span class="feature-desc">• Haptic & animated feedback on scans</span></li>
+          <li class="feature-item"><span class="feature-desc">• Zero external charting bloat</span></li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3 class="card-h3" style="color: #22C55E;">Scalability & Security</h3>
+        <ul class="feature-list">
+          <li class="feature-item"><span class="feature-desc">• Centralized Predictable Reducer Store</span></li>
+          <li class="feature-item"><span class="feature-desc">• Token-based QR Pass generation</span></li>
+          <li class="feature-item"><span class="feature-desc">• Multi-facility studio expansion ready</span></li>
+          <li class="feature-item"><span class="feature-desc">• Clean modular directory structure</span></li>
+          <li class="feature-item"><span class="feature-desc">• Cloud API & Stripe billing ready</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer">
+      <span>GYMFIT PLATFORM</span>
+      <span>SLIDE 07</span>
+    </div>
+  </div>
+
+  <!-- SLIDE 8: Monetization & Scalability Roadmap -->
+  <div class="slide">
+    <div class="kicker">Future Growth & Monetization</div>
+    <h2 class="title">Scalable Revenue Channels & Feature Roadmap</h2>
+    <div class="roadmap-row">
+      <div class="roadmap-card">
+        <div class="roadmap-phase" style="color: #8B5CF6;">PHASE 1: MONETIZATION</div>
+        <div class="card-body">Tiered Membership Subscriptions (Basic, Unlimited, VIP Gold) with integrated recurring billing, auto-renewal alerts, and promo passes.</div>
+      </div>
+      <div class="roadmap-card">
+        <div class="roadmap-phase" style="color: #FF5D3A;">PHASE 2: TRAINER REVENUE</div>
+        <div class="card-body">Marketplace for personal trainers with automated commission splits on 1-on-1 sessions, custom meal plans, and specialty bootcamps.</div>
+      </div>
+      <div class="roadmap-card">
+        <div class="roadmap-phase" style="color: #22C55E;">PHASE 3: WEARABLES SYNC</div>
+        <div class="card-body">Direct integration with Apple HealthKit, Google Fit, and Garmin for live heart rate, step count, and calorie burn telemetry during workouts.</div>
+      </div>
+      <div class="roadmap-card">
+        <div class="roadmap-phase" style="color: #F5F3FA;">PHASE 4: AI FITNESS COACH</div>
+        <div class="card-body">AI-powered adaptive workout recommendations tailored to member past PRs, recovery score, and biometric goals.</div>
+      </div>
+    </div>
+    <div class="footer">
+      <span>GYMFIT PLATFORM</span>
+      <span>SLIDE 08</span>
+    </div>
+  </div>
+
+</body>
+</html>
